@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="angularTask1">
+<head>
+	<title>Angular Task 1</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+<body>
+
+	<script src="./index.js"></script>
+	<script src="./myCtrl.js"></script>
+	<script src="./components/commentsList.js"></script>
+
+	<div ng-app="angularTask1" ng-controller="myCtrl" style="max-width:400px;">
+	  <header>
+	    <h3>Comments: </h3>
+	  </header>
+	  <comments-list></comments-list>
+<!-- 	  <ul>
+	    <li ng-repeat="comment in comments"><input type="checkbox">{{comment.text}}</li>
+	  </ul> -->
+	  <!-- Работало с myCtrl -->
+	  </div>
+	</div>
+
+</body>
+</html>
