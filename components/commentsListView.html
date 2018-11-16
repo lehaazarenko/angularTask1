@@ -1,3 +1,23 @@
-<li ng-repeat="comment in ctrl.comments" ng-show="!comment.isRemoved" class="ng-hide">
-	<input type="checkbox">{{comment.text}}
-</li>
+
+<label>
+	<input type="radio" ng-model="commentsType" value="all"> All
+</label>
+
+<label>
+	<input type="radio" ng-model="commentsType" value="existing"> Existing
+</label>
+
+<label>
+	<input type="radio" ng-model="commentsType" value="archived"> Archived
+</label>
+
+<div class="comments-type-caption">Comments Type: <br>{{commentsType}}</div>
+
+<ul class="comments-wrapper">
+	<li ng-repeat="comment in ctrl.comments" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">
+		<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)">
+		<div class="comment-text">
+			{{comment.text}}
+		</div>
+	</li>
+</ul>

@@ -1,0 +1,41 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+.comments-wrapper {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.comment {
+    background-color: lightsteelblue;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    margin-top: 10px;
+    transition: 1s;
+}
+
+.comment-text {
+    display: inline-block;
+    font-size: 18px;
+    color: #404040;
+}
+
+.comment-removed {
+    background-color: darksalmon;
+}
+
+.comments-type-caption {
+    font-size: 24px;
+    color: #404040;
+    text-align: center;
+    padding: 10px 0;
+}
