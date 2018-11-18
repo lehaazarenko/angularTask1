@@ -1,15 +1,14 @@
 (function (angular) {
     'use strict';
 
-    function commentsListController() {
+    function commentsListController($scope, $element, $attrs) {
         const ctrl = this;
 
-        ctrl.comments = [
-            {text: "Nice...", isRemoved: false},
+        ctrl.comments = [{text: "Nice...", isRemoved: false},
             {text: "Dumb", isRemoved: false},
-            {text: "Dope", isRemoved: false},
+            {text: "Dope", isRemoved: true},
             {text: "Brilliant", isRemoved: false},
-            {text: "Generic", isRemoved: false},
+            {text: "Generic", isRemoved: true},
             {text: "Outstanding", isRemoved: false},
             {text: "Borring", isRemoved: false}
         ];
@@ -19,33 +18,26 @@
             {value: 'archived', label: 'Archived'}
         ];
         ctrl.selectedType = 'all';
-        ctrl.commentsList = ctrl.comments;
 
+        ctrl.getComments = () => {
+            switch (ctrl.selectedType) {
+                case 'all':
+                    return ctrl.comments;
+                case 'existing':
+                    return ctrl.comments.filter(item => item.isRemoved === false);
+                case 'archived':
+                    return ctrl.comments.filter(item => item.isRemoved === true);
+                default:
+                    return ctrl.comments;
+            }
+        };
 
         ctrl.toggleIsRemoved = (index) => {
             ctrl.comments[index].isRemoved === true ?
                 ctrl.comments[index].isRemoved = false :
                 ctrl.comments[index].isRemoved = true;
-            // console.log(index);
-        };
-
-        ctrl.updateCommentsList = () => {
-            switch (ctrl.selectedType) {
-                case 'all':
-                    ctrl.commentsList = ctrl.comments;
-                    break;
-                case 'existing':
-                    ctrl.commentsList = ctrl.comments.filter(item => item.isRemoved === false);
-                    break;
-                case 'archived':
-                    ctrl.commentsList = ctrl.comments.filter(item => item.isRemoved === true);
-                    break;
-                default:
-                    ctrl.commentsList = ctrl.comments;
-            }
         };
     }
-
 
     angular.module('angularTask1').component('commentsList', {
         templateUrl: 'components/commentsListView.html',

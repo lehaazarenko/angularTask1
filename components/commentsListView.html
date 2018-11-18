@@ -7,7 +7,7 @@
 <div class="comments-type-caption">Comments Type: <br>{{ctrl.selectedType}}</div>
 
 <ul class="comments-wrapper">
-	<li ng-repeat="comment in ctrl.commentsList" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">
+	<li ng-repeat="comment in ctrl.getComments()" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">
 		<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)" ng-model="comment.isRemoved">
 		<div class="comment-text">
 			{{comment.text}}
