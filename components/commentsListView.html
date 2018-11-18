@@ -1,52 +1,22 @@
-<!--Почему-то не работало свойство checked-->
-<label>
-	<input type="radio" ng-model="commentsType" value="all"> All
+<label class="archived-checkbox-label">
+	<input type="checkbox" name="comments-type" ng-click="ctrl.toggleIsArchived()" value="archived"> Archived
 </label>
 
-<label>
-	<input type="radio" ng-model="commentsType" value="existing"> Existing
-</label>
-
-<label>
-	<input type="radio" ng-model="commentsType" value="archived"> Archived
-</label>
-
-<div class="comments-type-caption">Comments Type: <br>{{commentsType}}</div>
-
-<ul class="comments-wrapper">
+<!-- Didn't find a way to do this in a more pleasant fasion (maybe ng-switch), so I left it like that -->
+<ul ng-if="ctrl.areDisplayedCommentsArchived == false" class="comments-wrapper">
 	<li ng-repeat="comment in ctrl.comments" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">
-		<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)">
+		<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)" ng-checked="comment.isRemoved" />
 		<div class="comment-text">
 			{{comment.text}}
 		</div>
 	</li>
 </ul>
 
-<!--Бред, честно говоря, но я не знаю пока, как инлайново чекать типКоммента в зависимости от радио, только так,как ниже + сетать чекбос на иф нашел пока как адекватно -->
-
-<!--<ul ng-if="commentsType === 'all'" class="comments-wrapper">-->
-	<!--<li ng-repeat="comment in ctrl.comments" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">-->
-		<!--<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)">-->
-		<!--<div class="comment-text">-->
-			<!--{{comment.text}}-->
-		<!--</div>-->
-	<!--</li>-->
-<!--</ul>-->
-
-<!--<ul ng-if="commentsType === 'existing'" class="comments-wrapper">-->
-	<!--<li ng-repeat="comment in ctrl.comments" ng-show="!comment.isRemoved" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">-->
-		<!--<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)">-->
-		<!--<div class="comment-text">-->
-			<!--{{comment.text}}-->
-		<!--</div>-->
-	<!--</li>-->
-<!--</ul>-->
-
-<!--<ul ng-if="commentsType === 'archived'" class="comments-wrapper">-->
-	<!--<li ng-repeat="comment in ctrl.comments" ng-show="comment.isRemoved" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">-->
-		<!--<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index) checked">-->
-		<!--<div class="comment-text">-->
-			<!--{{comment.text}}-->
-		<!--</div>-->
-	<!--</li>-->
-<!--</ul>-->
+<ul ng-if="ctrl.areDisplayedCommentsArchived == true" class="comments-wrapper">
+	<li ng-repeat="comment in ctrl.comments" class="comment comment-removed" ng-if="comment.isRemoved">
+		<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)" ng-checked="true" />
+		<div class="comment-text">
+			{{comment.text}}
+		</div>
+	</li>
+</ul>
