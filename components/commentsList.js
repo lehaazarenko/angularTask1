@@ -22,7 +22,8 @@
 	    } 
 
         ctrl.toggleIsRemoved = (comment) => {
-				ctrl.comments[ctrl.comments.indexOf(comment)].isRemoved = !ctrl.comments[ctrl.comments.indexOf(comment)].isRemoved;
+        	const index = ctrl.comments.indexOf(comment);
+			ctrl.comments[index].isRemoved = !ctrl.comments[index].isRemoved;
         }
 	}
 
