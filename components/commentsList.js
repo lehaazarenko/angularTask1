@@ -12,16 +12,17 @@
 	    				   {text: "Borring", isRemoved: false}];
 
 	    ctrl.areDisplayedCommentsArchived = false; 
-	    // Added due to not loading archived checkbox checked property on load
 
-	    ctrl.toggleIsArchived = function() {
+	    ctrl.getComments = () => {
+	    	return ctrl.areDisplayedCommentsArchived ? ctrl.comments.filter(x => x.isRemoved) : ctrl.comments;
+	    }
+
+	    ctrl.toggleIsArchived = () => {
 	    	ctrl.areDisplayedCommentsArchived = !ctrl.areDisplayedCommentsArchived;
 	    } 
 
-        ctrl.toggleIsRemoved = function (index) {
-            ctrl.comments[index].isRemoved === true ?
-				ctrl.comments[index].isRemoved = false :
-				ctrl.comments[index].isRemoved = true;
+        ctrl.toggleIsRemoved = (comment) => {
+				ctrl.comments[ctrl.comments.indexOf(comment)].isRemoved = !ctrl.comments[ctrl.comments.indexOf(comment)].isRemoved;
         }
 	}
 

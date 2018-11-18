@@ -2,21 +2,11 @@
 	<input type="checkbox" name="comments-type" ng-click="ctrl.toggleIsArchived()" value="archived"> Archived
 </label>
 
-<!-- Didn't find a way to do this in a more pleasant fasion (maybe ng-switch), so I left it like that -->
-<ul ng-if="ctrl.areDisplayedCommentsArchived == false" class="comments-wrapper">
-	<li ng-repeat="comment in ctrl.comments" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">
-		<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)" ng-checked="comment.isRemoved" />
+<ul class="comments-wrapper">
+	<li ng-repeat="comment in ctrl.getComments()" class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">
+		<input type="checkbox" ng-click="ctrl.toggleIsRemoved(comment)" ng-checked="comment.isRemoved" />
 		<div class="comment-text">
-			{{comment.text}}
-		</div>
-	</li>
-</ul>
-
-<ul ng-if="ctrl.areDisplayedCommentsArchived == true" class="comments-wrapper">
-	<li ng-repeat="comment in ctrl.comments" class="comment comment-removed" ng-if="comment.isRemoved">
-		<input type="checkbox" ng-click="ctrl.toggleIsRemoved($index)" ng-checked="true" />
-		<div class="comment-text">
-			{{comment.text}}
+			{{$index}} {{comment.text}}
 		</div>
 	</li>
 </ul>
