@@ -11,6 +11,10 @@ ul {
     list-style-type: none;
 }
 
+input {
+    outline: none;
+}
+
 .comments-wrapper {
     margin: 0 auto;
     display: flex;
@@ -20,7 +24,7 @@ ul {
 
 .comment {
     background-color: lightsteelblue;
-    padding: 20px;
+    padding: 5px 25px 25px;
     text-align: center;
     width: 100%;
     margin-top: 10px;
@@ -28,10 +32,24 @@ ul {
     position: relative;
 }
 
-.comment input {
+.comment .comment-restore,
+.comment .comment-remove {
     position: absolute;
-    top: calc(50% - 6px);
-    left: 10px;
+    right: 5px;
+    bottom: 5px;
+    border: 0px;
+    background-color: transparent;
+    transition: 0.2s;
+}
+
+.comment .comment-restore:hover {
+    cursor: pointer;
+    color: palegreen;
+}
+
+.comment .comment-remove:hover {
+    cursor: pointer;
+    color: darksalmon;
 }
 
 .comment-text {
@@ -44,16 +62,134 @@ ul {
     background-color: darksalmon;
 }
 
-.comments-type-caption {
-    font-size: 24px;
+.comment .comment-metadata {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
     color: #404040;
-    text-align: center;
-    padding: 10px 0;
+    margin-bottom: 10px;
 }
 
-.archived-checkbox-label {
+.comment .comment-metadata-username {
+    width: 100%;
+    text-align: start;
+}
+
+.comment .comment-metadata-date {
+    font-size: 12px;
+    width: 100%;
+    text-align: start;
+}
+
+.comment .comment-edit-button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    display: block;
+    width: 30px;
+    height: 20px;
+    color: #404040;
+    border: 0px;
+    border-radius: 2px;
+    background-color: aliceblue;
+}
+
+.comment .comment-edit-button:hover {
+    cursor: pointer;
+}
+
+/*.comments-type-caption {*/
+    /*font-size: 24px;*/
+    /*color: #404040;*/
+    /*text-align: center;*/
+    /*padding: 10px 0;*/
+/*}*/
+
+.archived-checkbox-label,
+.username-filter-label {
     font-size: 24px;
     color: #404040;
     margin-left: auto;
     margin-right: auto;
+}
+
+.username-filter-label {
+    margin: 20px 0px;
+    width: 100%;
+    display: block;
+}
+
+.username-filter-label input {
+    height: 28px;
+    padding: 0px 5px;
+    font-size: 18px;
+    border: 0px;
+
+}
+
+.inputs-wrapper {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    color: #404040;
+}
+
+.inputs-wrapper label {
+    font-size: 18px;
+    color: #404040;
+}
+
+.inputs-wrapper label input {
+    width: 100%;
+    height: 24px;
+    text-align: center;
+    border-radius: 5px;
+    border: 0px;
+}
+
+.buttons-wrapper {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.buttons-wrapper input {
+    height: 30px;
+    border: 0px;
+    width: 48%;
+    transition: 0.5s;
+    color: #404040;
+    background-color: white;
+}
+
+.buttons-wrapper input:hover {
+    cursor: pointer;
+}
+
+.buttons-wrapper input:first-of-type:hover {
+    background-color: palegreen;
+}
+
+.buttons-wrapper input:last-of-type:hover {
+    background-color: darksalmon;
+}
+
+.edit-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.6);
+}
+
+.edit-popup .inputs-wrapper {
+    width: 350px;
+    margin: 100px auto;
+}
+
+.edit-popup .inputs-wrapper label {
+    color: whitesmoke;
 }
