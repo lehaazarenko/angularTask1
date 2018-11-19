@@ -1,6 +1,7 @@
-<label class="archived-checkbox-label">
-	<input type="checkbox" name="comments-type" ng-click="ctrl.toggleIsArchived()" value="archived"> Archived
+<label class="comments-type-radio" ng-repeat="type in ctrl.commentsTypes">
+	<input type="radio" name="comments-type" ng-click="ctrl.updateCommentsType($event.target.value)" value="{{type}}" ng-checked="{{$index === 0 ? true : false}}"> {{type | filter: uppercase}}
 </label>
+
 <label class="username-filter-label">
 	Type Username: <input type="text" ng-model="search.username" />
 </label>
@@ -29,7 +30,7 @@
 		</button>
 		<input type="button" class="comment-edit-button" ng-click="ctrl.editComment(comment)" value="Edit">
 		<div class="comment-text">
-			{{comment.text}}
+			"{{comment.text}}"
 		</div>
 	</li>
 </ul>

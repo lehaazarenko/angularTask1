@@ -14,8 +14,6 @@
 			}
 		}
 
-		ctrl.newDate = new Date();
-
 		ctrl.comments = [{text: "Nice...", username: "Vera",
 						  creationDate: new Date(), editDate: '',
 						  isRemoved: false, isEdited: false},
@@ -38,14 +36,19 @@
 						  creationDate: new Date(), editDate: '',
 						  isRemoved: false, isEdited: false}];
 
+		ctrl.commentsTypes = ['all', 'archived', 'existing'];
+
 	    ctrl.areDisplayedCommentsArchived = false;
 	    ctrl.isEditPopupDisplayed = false;
 	    ctrl.commentForEditing = {};
+	    ctrl.commentsType = 'all';
 
 	    ctrl.getComments = () => {
-	    	return ctrl.areDisplayedCommentsArchived ?
-				ctrl.comments.filter(x => x.isRemoved) :
-				ctrl.comments.filter(x => !x.isRemoved);
+	    	switch (ctrl.commentsType) {
+				case 'all': return ctrl.comments;
+				case 'archived': return ctrl.comments.filter(x => x.isRemoved);
+                case 'existing': return ctrl.comments.filter(x => !x.isRemoved);
+            }
 	    };
 
 	    ctrl.toggleIsArchived = () => {
@@ -72,7 +75,6 @@
 				updateComment(index, username, comment);
 				ctrl.isEditPopupDisplayed = false;
             }
-
 		};
 
         ctrl.editCommentCancel = () => {
@@ -87,6 +89,11 @@
             ctrl.comments[index].isEdited = true;
             ctrl.comments[index].editDate = new Date();
         }
+
+        ctrl.updateCommentsType = (type) => {
+        	ctrl.commentsType = type;
+        	console.log(type);
+		}
 	}
 
 	angular.module('angularTask1').component('commentsList', {
