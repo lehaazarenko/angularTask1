@@ -1,0 +1,68 @@
+<label class="comments-type-radio" ng-repeat="type in ctrl.commentsTypes">
+	<input type="radio" name="comments-type" ng-click="ctrl.updateCommentsType($event.target.value)" value="{{type}}" ng-checked="{{$index === 0 ? true : false}}"> {{type | filter: uppercase}}
+</label>
+
+<label class="username-filter-label">
+	Type Username: <input type="text" ng-model="search.username" />
+</label>
+
+
+<ul class="comments-wrapper">
+	<li ng-repeat="comment in ctrl.getComments() | filter: search | orderBy: 'username'"
+		class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">
+		<div class="comment-metadata">
+			<span class="comment-metadata-username">
+				{{comment.username}}
+			</span>
+			<span class="comment-metadata-date">
+				Created: {{comment.creationDate | date: 'medium'}}
+			</span>
+			<span ng-if="comment.isEdited" class="comment-metadata-date">
+				Edited: {{comment.creationDate | date: 'medium'}}
+			</span>
+		</div>
+		<button type="button" ng-class="comment.isRemoved ? 'comment-restore' : 'comment-remove'"
+				ng-click="ctrl.toggleIsRemoved(comment)"
+				ng-attr-title="{{comment.isRemoved ? 'Restore' : 'Remove'}}">
+			<i class="material-icons">
+				{{ comment.isRemoved ? "done" : "delete_outline" }}
+			</i>
+		</button>
+		<input type="button" class="comment-edit-button" ng-click="ctrl.editComment(comment)" value="Edit">
+		<div class="comment-text">
+			"{{comment.text}}"
+		</div>
+	</li>
+</ul>
+
+<div class="inputs-wrapper">
+	<label> Username
+		<input type="text" ng-model="username">
+	</label>
+	<label> Comment
+		<input type="text" ng-model="commentText">
+	</label>
+	<div class="buttons-wrapper">
+		<input type="button" value="Add Comment"
+			   ng-click="ctrl.addComment(username, commentText);
+			   			 username = ''; commentText = ''">
+		<input type="button" value="Cancel" ng-click="username = ''; commentText = ''">
+	</div>
+</div>
+
+<div ng-if="ctrl.isEditPopupDisplayed" class="edit-popup">
+	<div class="inputs-wrapper">
+		<label> Username
+			<input type="text" ng-model="username" ng-value="ctrl.commentForEditing.username">
+		</label>
+		<label> Comment
+			<input type="text" ng-model="commentText" ng-value="ctrl.commentForEditing.text">
+		</label>
+		<div class="buttons-wrapper">
+			<input type="button" value="Edit Comment"
+				   ng-click="ctrl.editCommentConfirm(username, commentText);
+			   			 	 username = ''; commentText = ''">
+			<input type="button" value="Cancel" ng-click="ctrl.editCommentCancel(); username = ''; commentText = ''">
+		</div>
+	</div>
+</div>

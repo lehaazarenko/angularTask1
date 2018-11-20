@@ -42,7 +42,7 @@
         calService.updateCommentsType = (type) => {
             calService.commentsType = type;
             console.log(type);
-        }
+        };
 
         calService.getComments = function() {
                 switch (calService.commentsType) {
@@ -60,6 +60,10 @@
         calService.toggleIsRemoved = (comment) => {
             const index = calService.comments.indexOf(comment);
             calService.comments[index].isRemoved = !calService.comments[index].isRemoved;
+        };
+
+        calService.updateLocalStorage = () => {
+            localStorage.setItem('comments', calService.comments);
         };
 
         return calService;
