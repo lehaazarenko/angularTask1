@@ -5,8 +5,8 @@ function commentsListController(commentsListFactory) {
 
 	ctrl.addComment = commentsListFactory.addComment;
 	ctrl.getComments = commentsListFactory.getComments;
-    // ctrl.getComments = () => commentsListFactory.getComments(ctrl.commentsType);
-	ctrl.updateCommentsType = commentsListFactory.updateCommentsType;
+    ctrl.getComments = () => commentsListFactory.getComments(ctrl.commentsType);
+	// ctrl.updateCommentsType = commentsListFactory.updateCommentsType;
 	ctrl.toggleIsRemoved = commentsListFactory.toggleIsRemoved;
 	ctrl.updateLocalStorage = commentsListFactory.updateLocalStorage;
 

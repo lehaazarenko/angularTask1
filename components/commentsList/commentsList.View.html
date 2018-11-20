@@ -1,5 +1,5 @@
 <label class="comments-type-radio" ng-repeat="type in ctrl.commentsTypes">
-	<input type="radio" name="comments-type" ng-click="ctrl.updateCommentsType($event.target.value)" value="{{type}}" ng-checked="{{$index === 0 ? true : false}}"> {{type | filter: uppercase}}
+	<input type="radio" name="comments-type" ng-model="ctrl.commentsType" value="{{type}}" ng-checked="{{$index === 0 ? true : false}}"> {{type | filter: uppercase}}
 </label>
 
 <label class="username-filter-label">

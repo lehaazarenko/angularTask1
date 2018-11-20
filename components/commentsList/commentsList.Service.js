@@ -41,8 +41,8 @@ function commentsListFactory() {
         calService.commentsType = type;
     };
 
-    calService.getComments = function() {
-            switch (calService.commentsType) {
+    calService.getComments = (type) => {
+            switch (type) {
                 case 'all': return calService.comments;
                 case 'archived': return calService.comments.filter(x => x.isRemoved);
                 case 'existing': return calService.comments.filter(x => !x.isRemoved);
@@ -62,6 +62,7 @@ function commentsListFactory() {
     };
 
     calService.updateLocalStorage = () => {
+        localStorage.removeItem('comments');
         localStorage.setItem('comments', JSON.stringify(calService.comments));
     };
 
