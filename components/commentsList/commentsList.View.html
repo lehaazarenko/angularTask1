@@ -18,7 +18,7 @@
 				Created: {{comment.creationDate | date: 'medium'}}
 			</span>
 			<span ng-if="comment.isEdited" class="comment-metadata-date">
-				Edited: {{comment.creationDate | date: 'medium'}}
+				Edited: {{comment.editDate | date: 'medium'}}
 			</span>
 		</div>
 		<button type="button" ng-class="comment.isRemoved ? 'comment-restore' : 'comment-remove'"
