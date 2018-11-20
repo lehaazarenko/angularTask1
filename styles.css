@@ -24,7 +24,7 @@ button {
 }
 
 .comment {
-    background-color: lightsteelblue;
+    background-color: #b0c4de87;
     padding: 5px 25px 25px;
     text-align: center;
     width: 100%;
@@ -50,7 +50,7 @@ button {
 
 .comment .comment-remove:hover {
     cursor: pointer;
-    color: darksalmon;
+    color: #ff7474;
 }
 
 .comment-text {
@@ -61,7 +61,7 @@ button {
 }
 
 .comment-removed {
-    background-color: darksalmon;
+    background-color: #ff400042;
 }
 
 .comment .comment-metadata {
@@ -190,7 +190,7 @@ button {
     color: whitesmoke;
 }
 
-input.ng-invalid.ng-not-empty,
-input.ng-touched.ng-empty {
+form input.ng-invalid.ng-not-empty,
+form input.ng-touched.ng-empty {
     border: 1px solid rgba(230,20,20,0.45);
 }
