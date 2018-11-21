@@ -1,20 +1,35 @@
 function commentsListController(commentsListFactory) {
+
 	const ctrl = this;
 
-	ctrl.Comment = commentsListFactory.Comment;
+    class Comment {
+        constructor(text, username, date, isRemoved) {
+            this.text = text;
+            this.username = username;
+            this.creationDate = date;
+            this.editDate = '';
+            this.isRemoved = isRemoved;
+            this.isEdited = false;
+        }
+    }
 
-	ctrl.addComment = commentsListFactory.addComment;
+    ctrl.updateLocalStorage = () => {
+        localStorage.removeItem('comments');
+        localStorage.setItem('comments', JSON.stringify(ctrl.comments));
+    };
+
 	ctrl.getComments = commentsListFactory.getComments;
     ctrl.getComments = () => commentsListFactory.getComments(ctrl.commentsType);
-	// ctrl.updateCommentsType = commentsListFactory.updateCommentsType;
-	ctrl.toggleIsRemoved = commentsListFactory.toggleIsRemoved;
-	ctrl.updateLocalStorage = commentsListFactory.updateLocalStorage;
+    ctrl.addComment = commentsListFactory.addComment(Comment, ctrl.updateLocalStorage);
+	ctrl.toggleIsRemoved = commentsListFactory.toggleIsRemoved(ctrl.updateLocalStorage);
+	// ctrl.updateLocalStorage = commentsListFactory.updateLocalStorage;
+
+
 
 	ctrl.commentsTypes = ['all', 'archived', 'existing'];
 	ctrl.isEditPopupDisplayed = false;
 	ctrl.commentForEditing = {};
 	ctrl.commentsType = 'all';
-
 
 	if(localStorage.getItem('comments')) {
 		commentsListFactory.comments = JSON.parse(localStorage.getItem('comments'));
@@ -23,6 +38,11 @@ function commentsListController(commentsListFactory) {
 	}
 
 	ctrl.comments = commentsListFactory.comments;
+
+    ctrl.updateLocalStorage = () => {
+        localStorage.removeItem('comments');
+        localStorage.setItem('comments', JSON.stringify(ctrl.comments));
+    };
 
 	ctrl.editComment = (comment) => {
 		const index = ctrl.comments.indexOf(comment);

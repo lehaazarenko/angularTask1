@@ -1,17 +1,6 @@
 function commentsListFactory() {
 
-    const calService = {}
-
-    class Comment {
-        constructor(text, username, date, isRemoved) {
-            this.text = text;
-            this.username = username;
-            this.creationDate = date;
-            this.editDate = '';
-            this.isRemoved = isRemoved;
-            this.isEdited = false;
-        }
-    }
+    const calService = {};
 
     calService.comments = [{text: "Nice...", username: "Vera",
                             creationDate: new Date(), editDate: '',
@@ -35,12 +24,6 @@ function commentsListFactory() {
                                 creationDate: new Date(), editDate: '',
                                 isRemoved: false, isEdited: false}];
 
-    calService.commentsType = 'all';
-
-    calService.updateCommentsType = (type) => {
-        calService.commentsType = type;
-    };
-
     calService.getComments = (type) => {
             switch (type) {
                 case 'all': return calService.comments;
@@ -49,21 +32,21 @@ function commentsListFactory() {
             }
     };
 
-    calService.addComment = (username, comment) => {
-        const newComment = new Comment(comment, username, new Date(), false);
-        calService.comments.push(newComment);
-        calService.updateLocalStorage();
+    calService.addComment = (CommentClass, updateLocalStorage) => {
+        return (username, comment) => {
+            console.log(username, comment);
+            const newComment = new CommentClass(comment, username, new Date(), false);
+            calService.comments.push(newComment);
+            updateLocalStorage();
+        };
     };
 
-    calService.toggleIsRemoved = (comment) => {
-        const index = calService.comments.indexOf(comment);
-        calService.comments[index].isRemoved = !calService.comments[index].isRemoved;
-        calService.updateLocalStorage();
-    };
-
-    calService.updateLocalStorage = () => {
-        localStorage.removeItem('comments');
-        localStorage.setItem('comments', JSON.stringify(calService.comments));
+    calService.toggleIsRemoved = (updateLocalStorage) => {
+        return (comment) => {
+            const index = calService.comments.indexOf(comment);
+            calService.comments[index].isRemoved = !calService.comments[index].isRemoved;
+            updateLocalStorage();
+        };
     };
 
     return calService;
