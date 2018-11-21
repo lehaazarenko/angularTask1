@@ -39,6 +39,8 @@ function commentsListController(commentsListFactory) {
 
 	ctrl.comments = commentsListFactory.comments;
 
+	console.log(ctrl.comments);
+
     ctrl.updateLocalStorage = () => {
         localStorage.removeItem('comments');
         localStorage.setItem('comments', JSON.stringify(ctrl.comments));
