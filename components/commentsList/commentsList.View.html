@@ -37,14 +37,14 @@
 
 <from class="inputs-wrapper" name="newCommentForm">
 	<label> Username
-		<input type="text" ng-model="username">
+		<input type="text" name="username" ng-model="username">
 	</label>
 	<label> Comment
-		<input type="text" ng-model="commentText" val />
+		<input type="text" name="commentText" ng-model="commentText" val />
 		<!--Right here commentText has no value,
 		but if we remove "val" (our validator) ng-model gains value of the input-->
 	</label>
-	<span>{{username}} {{commentText}}</span>
+	<span>{{newCommentForm.username.$valid}} {{newCommentForm.commentText.$valid}}</span>
 	<div class="buttons-wrapper">
 		<input type="button" value="Add Comment"
 			   ng-click="ctrl.addComment(username, commentText);
