@@ -194,3 +194,10 @@ form input.ng-invalid.ng-not-empty,
 form input.ng-touched.ng-empty {
     border: 1px solid rgba(230,20,20,0.45);
 }
+
+form .wrong-input-caption {
+    width: 100%;
+    text-align: center;
+    color: red;
+    display: block;
+}

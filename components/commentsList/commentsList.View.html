@@ -35,23 +35,26 @@
 	</li>
 </ul>
 
-<from class="inputs-wrapper" name="newCommentForm">
+<form class="inputs-wrapper" name="newCommentForm">
 	<label> Username
-		<input type="text" name="username" ng-model="username">
+		<input type="text" name="username" ng-model="username" required />
 	</label>
+	<span class="wrong-input-caption" 
+	ng-show="newCommentForm.username.$invalid && newCommentForm.username.$touched">Type your username</span>
 	<label> Comment
 		<input type="text" name="commentText" ng-model="commentText" val />
-		<!--Right here commentText has no value,
-		but if we remove "val" (our validator) ng-model gains value of the input-->
 	</label>
-	<span>{{newCommentForm.username.$valid}} {{newCommentForm.commentText.$valid}}</span>
+	<span class="wrong-input-caption" 
+	ng-show="newCommentForm.commentText.$invalid 
+			 && (newCommentForm.commentText.$dirty || newCommentForm.commentText.$touched)">Type hello at first</span>
 	<div class="buttons-wrapper">
 		<input type="button" value="Add Comment"
 			   ng-click="ctrl.addComment(username, commentText);
-			   			 username = ''; commentText = ''">
+			   			 username = ''; commentText = ''"
+			   			 ng-disabled="newCommentForm.$invalid">
 		<input type="button" value="Cancel" ng-click="username = ''; commentText = ''">
 	</div>
-</from>
+</form>
 
 <div ng-if="ctrl.isEditPopupDisplayed" class="edit-popup">
 	<div class="inputs-wrapper">
