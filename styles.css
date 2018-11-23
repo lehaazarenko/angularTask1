@@ -190,9 +190,12 @@ button {
     color: whitesmoke;
 }
 
-form input.ng-invalid.ng-not-empty,
-form input.ng-touched.ng-empty {
+form input.ng-invalid.ng-dirty {
     border: 1px solid rgba(230,20,20,0.45);
+}
+
+.edit-popup form input[name="username"].ng-empty.ng-pristine {
+    border: 0px;
 }
 
 form .wrong-input-caption {

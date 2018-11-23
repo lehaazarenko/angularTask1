@@ -1,5 +1,8 @@
 <label class="comments-type-radio" ng-repeat="type in ctrl.commentsTypes">
-	<input type="radio" name="comments-type" ng-model="ctrl.commentsType" value="{{type}}" ng-checked="{{$index === 0 ? true : false}}"> {{type | filter: uppercase}}
+	<input type="radio" name="comments-type"
+		   ng-model="ctrl.commentsType"
+		   value="{{type}}"
+		   ng-checked="{{$index === 0 ? true : false}}"> {{type | filter: uppercase}}
 </label>
 
 <label class="username-filter-label">
@@ -40,13 +43,17 @@
 		<input type="text" name="username" ng-model="username" required />
 	</label>
 	<span class="wrong-input-caption" 
-	ng-show="newCommentForm.username.$invalid && newCommentForm.username.$touched">Type your username</span>
+		  ng-show="newCommentForm.username.$invalid && newCommentForm.username.$dirty">
+		Type your username
+	</span>
 	<label> Comment
 		<input type="text" name="commentText" ng-model="commentText" val />
 	</label>
 	<span class="wrong-input-caption" 
-	ng-show="newCommentForm.commentText.$invalid 
-			 && (newCommentForm.commentText.$dirty || newCommentForm.commentText.$touched)">Type hello at first</span>
+		  ng-show="newCommentForm.commentText.$invalid
+		  && (newCommentForm.commentText.$dirty || newCommentForm.commentText.$touched)">
+		Type hello at first
+	</span>
 	<div class="buttons-wrapper">
 		<input type="button" value="Add Comment"
 			   ng-click="ctrl.addComment(username, commentText);
@@ -57,18 +64,37 @@
 </form>
 
 <div ng-if="ctrl.isEditPopupDisplayed" class="edit-popup">
-	<div class="inputs-wrapper">
+	<form class="inputs-wrapper" name="editCommentForm">
 		<label> Username
-			<input type="text" ng-model="username" ng-value="ctrl.commentForEditing.username" required>
+			<input type="text"
+				   ng-model="username"
+				   name="username"
+				   ng-value="ctrl.commentForEditing.username" required />
 		</label>
+		<span class="wrong-input-caption"
+			  ng-show="editCommentForm.username.$invalid && editCommentForm.username.$dirty">
+			Type your username
+		</span>
 		<label> Comment
-			<input type="text" ng-model="commentText" ng-value="ctrl.commentForEditing.text" required>
+			<input type="text"
+				   ng-model="commentText"
+				   name="commentText"
+				   ng-value="ctrl.commentForEditing.text" val />
 		</label>
+		<span class="wrong-input-caption"
+			  ng-show="editCommentForm.commentText.$invalid
+			  && (editCommentForm.commentText.$dirty || editCommentForm.commentText.$touched)">
+			Type hello at first
+		</span>
 		<div class="buttons-wrapper">
 			<input type="button" value="Edit Comment"
 				   ng-click="ctrl.editCommentConfirm(username, commentText);
-			   			 	 username = ''; commentText = ''">
-			<input type="button" value="Cancel" ng-click="ctrl.editCommentCancel(); username = ''; commentText = ''">
+			   			 	 username = ''; commentText = ''"
+				   ng-disabled="editCommentForm.$invalid" />
+			<input type="button"
+				   value="Cancel"
+				   ng-click="ctrl.editCommentCancel(); username = ''; commentText = ''" />
 		</div>
-	</div>
+		<span>{{ editCommentForm.$invalid }}</span>
+	</form>
 </div>
