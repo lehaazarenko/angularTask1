@@ -190,7 +190,8 @@ button {
     color: whitesmoke;
 }
 
-form input.ng-invalid.ng-dirty {
+form input.ng-invalid.ng-dirty,
+form input.ng-invalid.ng-touched{
     border: 1px solid rgba(230,20,20,0.45);
 }
 

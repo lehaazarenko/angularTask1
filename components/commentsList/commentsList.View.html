@@ -43,7 +43,8 @@
 		<input type="text" name="username" ng-model="username" required />
 	</label>
 	<span class="wrong-input-caption" 
-		  ng-show="newCommentForm.username.$invalid && newCommentForm.username.$dirty">
+		  ng-show="newCommentForm.username.$invalid
+		  && (newCommentForm.username.$dirty || newCommentForm.username.$touched)">
 		Type your username
 	</span>
 	<label> Comment

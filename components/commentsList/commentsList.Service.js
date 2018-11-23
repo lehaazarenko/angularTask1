@@ -34,8 +34,7 @@ function commentsListFactory() {
 
     calService.addComment = (CommentClass, updateLocalStorage) => {
         return (username, comment) => {
-            console.log(username, comment);
-            const newComment = new CommentClass(comment, username, new Date(), false);
+            const newComment = new CommentClass(comment, username, new Date());
             calService.comments.push(newComment);
             updateLocalStorage();
         };
