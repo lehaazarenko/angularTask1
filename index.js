@@ -1,1 +1,3 @@
-angular.module('angularTask1', []);
+(function(angular) {
+    angular.module('angularTask1', []);
+})(window.angular);

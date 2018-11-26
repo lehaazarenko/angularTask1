@@ -15,7 +15,7 @@ const concat = require('gulp-concat');
 
 
 gulp.task('scripts', function() {
-    return gulp.src(['./index.js', './components/**/*.js', './directives/*.js'])
+    return gulp.src(['index.js', 'components/**/*.controller.js', 'components/**/*.js', 'directives/*.js'])
         .pipe(concat('bundle.js'))
         .pipe(gulp.dest('./dist/scripts/'));
 });
