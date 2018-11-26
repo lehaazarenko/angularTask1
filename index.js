@@ -1,3 +1,5 @@
-(function(angular) {
+(function() {
+    'use strict';
+
     angular.module('angularTask1', []);
-})(window.angular);
+})();

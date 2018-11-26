@@ -1,5 +1,7 @@
-(function(angular) {
-    function CommentsListFactory() {
+(function() {
+    'use strict';
+
+    function commentsListFactory() {
 
         const calService = {};
 
@@ -104,5 +106,5 @@
         return calService;
     }
 
-    angular.module('angularTask1').factory('CommentsListFactory', CommentsListFactory);
-})(window.angular);
+    angular.module('angularTask1').factory('commentsListFactory', commentsListFactory);
+})();

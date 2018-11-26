@@ -1,4 +1,6 @@
-(function(angular) {
+(function() {
+    'use strict';
+
     angular.module('angularTask1').directive('val', function () {
         return {
             require: 'ngModel',
@@ -14,4 +16,4 @@
             }
         };
     });
-})(window.angular);
+})();

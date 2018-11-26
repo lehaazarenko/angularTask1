@@ -1,9 +1,11 @@
-(function(angular) {
+(function() {
     'use strict';
 
     angular.module('angularTask1').controller('CommentsListController', CommentsListController);
 
-    function CommentsListController(CommentsListFactory, COMMENTS_TYPES) {
+    function CommentsListController(commentsListFactory, COMMENTS_TYPES) {
+
+        init();
 
         const ctrl = this;
 
@@ -12,25 +14,24 @@
         ctrl.commentForEditing = {};
         ctrl.commentsType = 'all';
 
-        ctrl.getComments = CommentsListFactory.getComments;
-        ctrl.addComment = CommentsListFactory.addComment;
-        ctrl.toggleIsRemoved = CommentsListFactory.toggleIsRemoved;
-        ctrl.editComment = CommentsListFactory.editComment;
-        ctrl.editCommentConfirm = CommentsListFactory.editCommentConfirm;
-        ctrl.editCommentCancel = CommentsListFactory.editCommentCancel;
-        ctrl.updateLocalStorage = CommentsListFactory.updateLocalStorage;
+        ctrl.getComments = commentsListFactory.getComments;
+        ctrl.addComment = commentsListFactory.addComment;
+        ctrl.toggleIsRemoved = commentsListFactory.toggleIsRemoved;
+        ctrl.editComment = commentsListFactory.editComment;
+        ctrl.editCommentConfirm = commentsListFactory.editCommentConfirm;
+        ctrl.editCommentCancel = commentsListFactory.editCommentCancel;
+        ctrl.updateLocalStorage = commentsListFactory.updateLocalStorage;
 
-        const init = () => {
+        function init() {
             if (localStorage.getItem('comments') && localStorage.getItem('comments') !== "undefined") {
-                CommentsListFactory.comments = JSON.parse(localStorage.getItem('comments'));
+                commentsListFactory.comments = JSON.parse(localStorage.getItem('comments'));
             } else {
                 ctrl.updateLocalStorage();
             }
 
-            ctrl.comments = CommentsListFactory.comments;
-        };
+            ctrl.comments = commentsListFactory.comments;
+        }
 
-        init();
     }
 
-})(window.angular);
+})();
