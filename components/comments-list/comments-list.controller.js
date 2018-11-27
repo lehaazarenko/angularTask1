@@ -5,7 +5,7 @@
 
     function CommentsListController(commentsListFactory, COMMENTS_TYPES) {
 
-        init();
+        // CommentsListController.$inject = ['commentsListFactory', 'COMMENTS_TYPES'];
 
         const ctrl = this;
 
@@ -22,7 +22,6 @@
         ctrl.editCommentCancel = commentsListFactory.editCommentCancel;
         ctrl.updateLocalStorage = commentsListFactory.updateLocalStorage;
 
-        function init() {
             if (localStorage.getItem('comments') && localStorage.getItem('comments') !== "undefined") {
                 commentsListFactory.comments = JSON.parse(localStorage.getItem('comments'));
             } else {
@@ -30,7 +29,7 @@
             }
 
             ctrl.comments = commentsListFactory.comments;
-        }
+
 
     }
 

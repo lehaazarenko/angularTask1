@@ -64,13 +64,13 @@
                 isEdited: false
             }
             calService.comments.push(newComment);
-            updateLocalStorage();
+            calService.updateLocalStorage();
         };
 
         calService.toggleIsRemoved = (comment) => {
             const index = calService.comments.indexOf(comment);
             calService.comments[index].isRemoved = !calService.comments[index].isRemoved;
-            updateLocalStorage();
+            calService.updateLocalStorage();
         };
 
         calService.editComment = (comment) => {

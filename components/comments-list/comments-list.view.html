@@ -11,7 +11,7 @@
 
 
 <ul class="comments-wrapper">
-	<li ng-repeat="comment in ctrl.getComments() | filter: search | orderBy: 'username'  track by $index"
+	<li ng-repeat="comment in ctrl.getComments(ctrl.commentsType) | filter: search | orderBy: 'username'  track by $index"
 		class="comment" ng-class="comment.isRemoved ? 'comment-removed': 'comment-not-removed'">
 		<div class="comment-metadata">
 			<span class="comment-metadata-username">
