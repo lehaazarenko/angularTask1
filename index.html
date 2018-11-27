@@ -2,18 +2,16 @@
 <html ng-app="angularTask1">
 <head>
 	<title>Angular Task 1</title>
+	<link rel="stylesheet" href="styles.css">
+	<link href="//fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
 <body>
 
-	<script src="./index.js"></script>
-	<!-- <script src="./myCtrl.js"></script> -->
-	<script src="components/commentsList.js"></script>
+	<script src="./dist/scripts/bundle.js"></script>
 
-	<div style="max-width:400px;">
-	  <header>
-	    <h3>Comments: </h3>
-	  </header>
+	<div style="max-width: 800px; margin: 20px auto">
 	  <comments-list></comments-list>
 	</div>
 
